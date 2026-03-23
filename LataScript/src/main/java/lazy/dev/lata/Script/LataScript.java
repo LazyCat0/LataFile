@@ -1,6 +1,6 @@
 package lazy.dev.lata.Script;
 
-import lazy.dev.LataFile;
+import lazy.dev.lata.File.LataFile;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,6 +29,20 @@ public class LataScript {
                 executeBlock(String.valueOf(sec.get("then")), sec);
             } else if (sec.containsKey("else")) {
                 executeBlock(String.valueOf(sec.get("else")), sec);
+            }
+        });
+        registerCommand("set", (args, sec) -> {
+            try {
+                String[] parts = args.split(" ");
+                String[] path = parts[0].split("\\.");
+                String op = parts[2];
+                int val1 = Integer.parseInt(dataContext.getData().get(path[0]).get(path[1]).toString());
+                int val2 = Integer.parseInt(parts[3]);
+
+                int result = op.equals("+") ? val1 + val2 : val1 - val2;
+                dataContext.setValue(path[0], path[1], result);
+            } catch (Exception e) {
+                System.err.println("Math error: " + e.getMessage());
             }
         });
     }
