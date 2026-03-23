@@ -1,15 +1,17 @@
-package lazy.dev;
+package lazy.dev.lata.File;
 
 import java.io.*;
 import java.util.*;
 import java.util.logging.Logger;
 
 public class LataFile {
-    public static final String _LATA = "1.0-snapshot";
+    public static final String _LATA = "1.1-snapshot";
     private static final Logger LOGGER = Logger.getLogger("LataFormat");
 
     private final Map<String, Map<String, Object>> data = new LinkedHashMap<>();
     private List<String> readOnlySections = new ArrayList<>();
+
+    public LataFile() {}
     public void load(File file) throws IOException {
         data.clear();
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
