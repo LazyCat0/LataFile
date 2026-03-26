@@ -41,8 +41,7 @@ public class LataFile {
         String fileVersion = String.valueOf(meta.getOrDefault("version", "unknown"));
 
         if (!_LATA.equals(fileVersion)) {
-            LOGGER.warning("[LATA] Version mismatch! File: " + fileVersion + " | Target: " + _LATA);
-            throw new IOException("Unsupported Lata version");
+            throw new IOException("Unsupported Lata version! Latest supported version: " + _LATA);
         }
     }
     private void updatePermissions() {
