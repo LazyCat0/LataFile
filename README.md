@@ -57,10 +57,10 @@ dependencies {
         lataFile.setValue("meta", "version", "1.0-snapshot");
         lataFile.setValue("example section", "example key", "example value");
         lataFile.saveToFile(file);
+        Logger.getLogger("bzbzbzbz").info(LataFile.get("example section", "example key").toString());
     } catch (IOException e) {
         e.printStackTrace();
     }
-system.out.println(lataFile.get("example section", "example key").toString());
 ```
 **This code will create file with name "Lata example.lata" inside your project and add NECESSARILY `[meta]` section and `[example section]` with example values.** 
 ```lata
