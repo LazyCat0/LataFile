@@ -1,4 +1,4 @@
-package lazy.dev.LataFile;
+package lazy.dev.lata.File;
 
 import java.io.*;
 import java.util.*;
