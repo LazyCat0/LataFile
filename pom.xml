@@ -9,7 +9,6 @@
     <version>1.2-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>LataScript</module>
         <module>LataCore</module>
     </modules>
 

@@ -18,7 +18,7 @@
 <dependency>
     <groupId>com.github.LazyCat0.LataFile</groupId> <!--->LataScript WIP. I do not recommend to use LataScript cause it a little rawwwww<!-->
     <artifactId>LataCore</artifactId>
-    <version>1.1-snapshot</version>
+    <version>1.2-snapshot</version>  <!--->Use the latest LataFile version!!<!-->
 </dependency>
 ```
 ### Gradle
@@ -32,7 +32,8 @@ repositories {
 * Depend
 ```groovy
 dependencies {
-    implementation 'com.github.LazyCat0.LataFile:LataFile:1.1-snapshot' // LataScript WIP. I do not recommend to use LataScript cause it a little rawwwww
+    implementation 'com.github.LazyCat0.LataFile:LataFile:1.2-snapshot' // LataScript WIP. I do not recommend to use LataScript cause it a little rawwwww
+    // Use the latest LataFile version!!
 }
 ```
 ### Gradle (kts)
@@ -46,7 +47,8 @@ repositories {
 * Depend
 ```kotlin
 dependencies {
-    implementation("com.github.LazyCat0.LataFile:LataFile:1.1-snapshot") // LataScript WIP. I do not recommend to use LataScript cause it a little rawwwww
+    implementation("com.github.LazyCat0.LataFile:LataFile:1.2-snapshot") // LataScript WIP. I do not recommend to use LataScript cause it a little rawwwww
+    // Use the latest LataFile version!!
 }
 ```
 
@@ -54,7 +56,7 @@ dependencies {
 **Here example for Java (for example in C# check repos on this GitHub)**
 ```java
  try {
-        lataFile.setValue("meta", "version", "1.0-snapshot");
+        lataFile.setValue("meta", "version", "1.2-snapshot");
         lataFile.setValue("example section", "example key", "example value");
         lataFile.saveToFile(file);
         Logger.getLogger("bzbzbzbz").info(LataFile.get("example section", "example key").toString());
