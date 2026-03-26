@@ -1,11 +1,11 @@
-package lazy.dev.lata.File;
+package lazy.dev.LataFile;
 
 import java.io.*;
 import java.util.*;
 import java.util.logging.Logger;
 
 public class LataFile {
-    public static final String _LATA = "1.1-snapshot";
+    public static final String _LATA = "1.2-snapshot";
     private static final Logger LOGGER = Logger.getLogger("LataFormat");
 
     private final Map<String, Map<String, Object>> data = new LinkedHashMap<>();
@@ -41,9 +41,8 @@ public class LataFile {
         String fileVersion = String.valueOf(meta.getOrDefault("version", "unknown"));
 
         if (!_LATA.equals(fileVersion)) {
-            LOGGER.warning("[Lazy/data] Version mismatch! File: " + fileVersion + " | Target: " + _LATA);
-            meta.put("version", _LATA);
-            saveToFile(file);
+            LOGGER.warning("[LATA] Version mismatch! File: " + fileVersion + " | Target: " + _LATA);
+            throw new IOException("Unsupported Lata version");
         }
     }
     private void updatePermissions() {
@@ -59,6 +58,11 @@ public class LataFile {
         }
         data.computeIfAbsent(section, k -> new HashMap<>()).put(key, value);
     }
+    public Object get(String section, String key) {
+        // After you get it, convert to type that you need.
+        Map<String, Object> sectionData = data.get(section);
+        return (sectionData != null) ? sectionData.get(key) : null;
+    }
 
     private Object parse(String v) {
         if (v.startsWith("\"")) return v.substring(1, v.length() - 1);
@@ -68,7 +72,6 @@ public class LataFile {
     }
     public void saveToFile(File file) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-            // 1. Сначала принудительно записываем [meta]
             if (data.containsKey("meta")) {
                 writeSection(writer, "meta", data.get("meta"));
             } else {
